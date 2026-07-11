@@ -9,12 +9,11 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: AppColors.maincolor,
       ),
-      width: double.infinity,
-      height: 50,
       alignment: Alignment.center,
       child: Text(
         "$title",
