@@ -12,13 +12,21 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text("$subtitle", style: AppTextStyles.fieldsubtitles),
         SizedBox(height: 5),
-        TextField(
+        TextFormField(
           onTapOutside: (y) {
             FocusScope.of(context).unfocus();
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "name is required";
+            } else if (value.length > 4) {
+              return " name must be greater than 4 character";
+            }
           },
           decoration: InputDecoration(
             fillColor: Colors.white,
             filled: true,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide.none,
