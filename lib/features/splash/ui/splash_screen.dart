@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
+import 'package:to_do_app/core/utils/app_constant_box.dart';
+import 'package:to_do_app/features/home_screen/UI/home_screen.dart';
+import 'package:to_do_app/features/login_screen/data/models/user_model.dart';
 import 'package:to_do_app/features/login_screen/ui/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,8 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
-
     super.initState();
+  }
+
+  Widget nextRoute() {
+    var userdata = Hive.box<UserModel>(AppConstantBox.userbox).getAt(0);
+    if (userdata == null) {
+      return LoginScreen();
+    } else {
+      return HomeScreen();
+    }
   }
 
   @override

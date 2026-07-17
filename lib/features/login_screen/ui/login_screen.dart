@@ -7,6 +7,7 @@ import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/core/utils/app_constant_box.dart';
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
+import 'package:to_do_app/features/home_screen/UI/home_screen.dart';
 import 'package:to_do_app/features/login_screen/data/models/user_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {});
   }
 
+  var namecontrollar = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,12 +88,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: AppTextStyles.hinttitles,
                 ),
                 SizedBox(height: 20),
-                CustomTextField(subtitle: "full Name"),
+                CustomTextField(
+                  subtitle: "full Name",
+                  controller: namecontrollar,
+                ),
                 SizedBox(height: 15),
                 CustomContainer(
                   title: "Continue",
                   onTap: () {
-                    formkey.currentState?.validate();
                     if (image == null) {
                       showDialog(
                         context: context,
@@ -103,9 +107,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       );
                     }
-                    Hive.box<UserModel>(
-                      AppConstantBox.userbox,
-                    ).add(UserModel(image: image?.path ?? "", name: ""));
+                    ;
+                    if (formkey.currentState?.validate() ?? false) {
+                      Hive.box<UserModel>(AppConstantBox.userbox)
+                          .add(
+                            UserModel(
+                              image: image?.path ?? "",
+                              name: namecontrollar.text,
+                            ),
+                          )
+                          .then((value) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return HomeScreen();
+                                },
+                              ),
+                            );
+                          })
+                          .catchError((error) {
+                            print(error);
+                          });
+                    }
                   },
                 ),
               ],

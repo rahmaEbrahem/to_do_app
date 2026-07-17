@@ -3,7 +3,8 @@ import 'package:to_do_app/core/theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final String subtitle;
-  const CustomTextField({super.key, required this.subtitle});
+  TextEditingController? controller;
+  CustomTextField({super.key, required this.subtitle, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class CustomTextField extends StatelessWidget {
             ),
             contentPadding: EdgeInsets.all(15),
           ),
+          controller: controller,
         ),
       ],
     );
