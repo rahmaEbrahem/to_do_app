@@ -19,15 +19,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => nextRoute()),
       );
     });
     super.initState();
   }
 
   Widget nextRoute() {
-    var userdata = Hive.box<UserModel>(AppConstantBox.userbox).getAt(0);
-    if (userdata == null) {
+    if (Hive.box<UserModel>(AppConstantBox.userbox).isEmpty) {
       return LoginScreen();
     } else {
       return HomeScreen();

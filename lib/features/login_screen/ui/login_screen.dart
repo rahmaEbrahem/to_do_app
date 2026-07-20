@@ -106,8 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         },
                       );
+                      return;
                     }
-                    ;
                     if (formkey.currentState?.validate() ?? false) {
                       Hive.box<UserModel>(AppConstantBox.userbox)
                           .add(

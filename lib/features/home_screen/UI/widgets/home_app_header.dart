@@ -15,15 +15,22 @@ class HomeAppHeader extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          radius: 30,
+          radius: 40,
           backgroundImage: FileImage(File(userdata?.image ?? "")),
+        ),
+        SizedBox(width: 10),
+        Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Good morning", style: AppTextStyles.hinttitles),
+              SizedBox(height: 6),
               Text(userdata?.name ?? "", style: AppTextStyles.fieldsubtitles),
             ],
           ),
         ),
+
+        Icon(Icons.notifications),
       ],
     );
   }

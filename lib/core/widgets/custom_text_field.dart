@@ -3,8 +3,8 @@ import 'package:to_do_app/core/theme/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final String subtitle;
-  TextEditingController? controller;
-  CustomTextField({super.key, required this.subtitle, this.controller});
+  final TextEditingController? controller;
+  const CustomTextField({super.key, required this.subtitle, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,15 @@ class CustomTextField extends StatelessWidget {
         Text("$subtitle", style: AppTextStyles.fieldsubtitles),
         SizedBox(height: 5),
         TextFormField(
+          controller: controller,
           onTapOutside: (y) {
             FocusScope.of(context).unfocus();
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "name is required";
-            } else if (value.length > 4) {
-              return " name must be greater than 4 character";
+            } else if (value.length < 4) {
+              return " name must be greater than 4 ";
             }
           },
           decoration: InputDecoration(
@@ -38,7 +39,6 @@ class CustomTextField extends StatelessWidget {
             ),
             contentPadding: EdgeInsets.all(15),
           ),
-          controller: controller,
         ),
       ],
     );

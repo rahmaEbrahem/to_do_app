@@ -4,8 +4,8 @@ import 'package:to_do_app/core/theme/app_text_styles.dart';
 
 class CustomContainer extends StatelessWidget {
   final String title;
-  void Function()? onTap;
-  CustomContainer({super.key, required this.title, this.onTap});
+  final void Function()? onTap;
+  const CustomContainer({super.key, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
