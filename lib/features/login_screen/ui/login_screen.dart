@@ -90,7 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20),
                 CustomTextField(
                   subtitle: "full Name",
+                  descripe: "enter your name",
                   controller: namecontrollar,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "name is required";
+                    } else if (value.length < 4) {
+                      return " name must be greater than 4 ";
+                    }
+                  },
                 ),
                 SizedBox(height: 15),
                 CustomContainer(

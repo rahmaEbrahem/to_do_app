@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/theme/app_colors.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
+import 'package:to_do_app/features/add_task.dart/data/model/task_model.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
+  final TaskModel tasks;
+  const TaskItem({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class TaskItem extends StatelessWidget {
               height: 100,
               width: 20,
               decoration: BoxDecoration(
-                color: AppColors.maincolor,
+                color: Color(tasks.color),
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
@@ -28,23 +30,20 @@ class TaskItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 10,
                 children: [
-                  Text("Flutter UI", style: AppTextStyles.titles),
-                  Text(
-                    "Build Register Screen",
-                    style: AppTextStyles.hinttitles,
-                  ),
+                  Text(tasks.title, style: AppTextStyles.titles),
+                  Text(tasks.description, style: AppTextStyles.hinttitles),
                   Container(
                     height: 30,
                     width: 80,
                     decoration: BoxDecoration(
-                      color: Colors.cyanAccent.shade100,
+                      color: Color(tasks.color).withValues(alpha: 4),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
                       child: Text(
                         "padding",
                         style: AppTextStyles.containtitles.copyWith(
-                          color: Colors.cyanAccent.shade400,
+                          color: Color(tasks.color),
                         ),
                       ),
                     ),
