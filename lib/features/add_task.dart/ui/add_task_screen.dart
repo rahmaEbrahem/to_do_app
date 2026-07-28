@@ -21,7 +21,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   var descriptioncontroller = TextEditingController();
   var datecontroller = TextEditingController();
   int? color;
+  void saveToHive() {
+    final title = titlecontroller.text;
+    final description = descriptioncontroller.text;
+    final date = datecontroller.text;
+  }
+
   @override
+  void dispose() {
+    titlecontroller.dispose();
+    descriptioncontroller.dispose();
+    datecontroller.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

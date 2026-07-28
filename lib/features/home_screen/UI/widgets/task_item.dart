@@ -34,17 +34,15 @@ class TaskItem extends StatelessWidget {
                   Text(tasks.description, style: AppTextStyles.hinttitles),
                   Container(
                     height: 30,
-                    width: 80,
+                    width: 100,
                     decoration: BoxDecoration(
                       color: Color(tasks.color).withValues(alpha: 4),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
                       child: Text(
-                        "padding",
-                        style: AppTextStyles.containtitles.copyWith(
-                          color: Color(tasks.color),
-                        ),
+                        tasks.status == "done" ? "Done" : "pending",
+                        style: AppTextStyles.titles,
                       ),
                     ),
                   ),

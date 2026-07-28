@@ -3,7 +3,15 @@ import 'package:to_do_app/core/theme/app_colors.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 
 class HomeCard extends StatelessWidget {
-  const HomeCard({super.key});
+  final int total;
+  final int done;
+  final int pending;
+  const HomeCard({
+    super.key,
+    required this.total,
+    required this.done,
+    required this.pending,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +24,9 @@ class HomeCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CardItem(itemnumber: 12, itemname: "Tasks"),
-            CardItem(itemnumber: 5, itemname: "Done"),
-            CardItem(itemnumber: 6, itemname: "padding"),
+            CardItem(itemnumber: total, itemname: "Tasks"),
+            CardItem(itemnumber: done, itemname: "Done"),
+            CardItem(itemnumber: pending, itemname: "pending"),
           ],
         ),
       ),
