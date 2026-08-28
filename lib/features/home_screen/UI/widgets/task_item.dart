@@ -33,7 +33,7 @@ class TaskItem extends StatelessWidget {
                   Text(tasks.title, style: AppTextStyles.titles),
                   Text(tasks.description, style: AppTextStyles.hinttitles),
                   Container(
-                    height: 30,
+                    height: 40,
                     width: 100,
                     decoration: BoxDecoration(
                       color: Color(tasks.color).withValues(alpha: 4),
@@ -42,7 +42,7 @@ class TaskItem extends StatelessWidget {
                     child: Center(
                       child: Text(
                         tasks.status == "done" ? "Done" : "pending",
-                        style: AppTextStyles.titles,
+                        style: AppTextStyles.fieldsubtitles,
                       ),
                     ),
                   ),
