@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/theme/app_colors.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/features/add_task.dart/data/model/task_model.dart';
 import 'package:to_do_app/features/home_screen/data/model/home_model.dart';
+import 'package:to_do_app/features/update_task/presentation/cubit/updatetask_cubit.dart';
+import 'package:to_do_app/features/update_task/presentation/ui/update_task_screen.dart';
 
 class TaskItem extends StatelessWidget {
   final Data task;
@@ -50,7 +53,20 @@ class TaskItem extends StatelessWidget {
               ),
             ),
 
-            Icon(Icons.arrow_forward_ios),
+            IconButton(
+              icon: const Icon(Icons.arrow_forward_ios),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => UpdateTaskCubit(),
+                      child: UpdateTaskScreen(task: task),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/routes/routes.dart';
 import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
+import 'package:to_do_app/features/auth/login_screen/data/repo/login_repo.dart';
+import 'package:to_do_app/features/auth/login_screen/presentation/cubit/login_cubit.dart';
 import 'package:to_do_app/features/auth/regester_screen/presentation/cubit/register_cubit.dart';
 import 'package:to_do_app/features/auth/regester_screen/presentation/ui/register_screen.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
@@ -23,7 +25,12 @@ class AppRoutes {
           ),
         );
       case Routes.loginscreen:
-        return MaterialPageRoute(builder: (context) => LoginScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LoginCubit(loginRepo: LoginRepo()),
+            child: LoginScreen(),
+          ),
+        );
       case Routes.homescreen:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(

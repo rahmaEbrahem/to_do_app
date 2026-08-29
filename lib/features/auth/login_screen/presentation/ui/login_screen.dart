@@ -8,6 +8,7 @@ import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
 import 'package:to_do_app/features/auth/login_screen/data/models/login_request_body.dart';
 import 'package:to_do_app/features/auth/login_screen/presentation/cubit/login_cubit.dart';
+import 'package:to_do_app/features/auth/login_screen/presentation/ui/widgets/login_bloc_listen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                LoginBlocListen(),
                 200.verticalSpace,
                 Text("Login", style: AppTextStyles.titles),
                 50.verticalSpace,
