@@ -7,6 +7,7 @@ import 'package:to_do_app/features/auth/regester_screen/presentation/cubit/regis
 import 'package:to_do_app/features/auth/regester_screen/presentation/ui/register_screen.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
 import 'package:to_do_app/features/auth/login_screen/presentation/ui/login_screen.dart';
+import 'package:to_do_app/features/home_screen/presentation/cubit/home_cubit.dart';
 import 'package:to_do_app/features/splash/presentation/ui/splash_screen.dart';
 
 class AppRoutes {
@@ -24,7 +25,12 @@ class AppRoutes {
       case Routes.loginscreen:
         return MaterialPageRoute(builder: (context) => LoginScreen());
       case Routes.homescreen:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => HomeCubit()..getTasks(),
+            child: HomeScreen(),
+          ),
+        );
       case Routes.addtaskscreen:
         return MaterialPageRoute(builder: (context) => AddTaskScreen());
       default:

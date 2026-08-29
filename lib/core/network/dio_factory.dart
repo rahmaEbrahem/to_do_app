@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:to_do_app/core/helper/app_preferences.dart';
 
 class DioFactory {
   static late Dio dio;
@@ -13,6 +14,7 @@ class DioFactory {
       ),
     );
     initlogger();
+    initAuthInterceptor();
   }
 
   static initlogger() {
@@ -33,6 +35,24 @@ class DioFactory {
           }
           // don't print responses with unit8 list data
           return !args.isResponse || !args.hasUint8ListData;
+        },
+      ),
+    );
+  }
+
+  static void initAuthInterceptor() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = AppPreferences.getToken();
+
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+
+          options.headers['Accept'] = 'application/json';
+
+          handler.next(options);
         },
       ),
     );
