@@ -53,6 +53,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   subtitle: "Task Title",
                   descripe: "Enter the title",
                   controller: titlecontroller,
+                  keyboardtype: TextInputType.name,
                   validator: (v) {
                     if (v == null || v.isEmpty) {
                       return "task name is required";
@@ -65,6 +66,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   lines: 5,
                   descripe: "Enter task Description...",
                   controller: descriptioncontroller,
+                  keyboardtype: TextInputType.name,
                   validator: (v) {
                     if (v == null || v.isEmpty) {
                       return "task description is required";
@@ -76,6 +78,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   subtitle: "Date",
                   descripe: "Enter the Date",
                   controller: datecontroller,
+                  keyboardtype: TextInputType.name,
                   validator: (v) {
                     if (v == null || v.isEmpty) {
                       return "Date is required";

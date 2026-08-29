@@ -1,14 +1,13 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:to_do_app/core/theme/app_text_styles.dart';
-import 'package:to_do_app/core/utils/app_constant_box.dart';
+
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
-import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
-import 'package:to_do_app/features/auth/login_screen/data/models/user_model.dart';
+import 'package:to_do_app/features/auth/login_screen/data/models/login_request_body.dart';
+import 'package:to_do_app/features/auth/login_screen/presentation/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,20 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final picker = ImagePicker();
-  XFile? image;
   var formkey = GlobalKey<FormState>();
-  void pickfromgallary() async {
-    image = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {});
-  }
-
-  void pickfromcamera() async {
-    image = await picker.pickImage(source: ImageSource.camera);
-    setState(() {});
-  }
-
-  var namecontrollar = TextEditingController();
+  var emailcontrollar = TextEditingController();
+  var passwordcontrollar = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,100 +31,33 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 300),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("choose"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                pickfromgallary();
-                              },
-                              child: Icon(Icons.browse_gallery),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                pickfromcamera();
-                              },
-                              child: Icon(Icons.camera),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Colors.blueGrey.shade100,
-                    radius: 45,
-                    backgroundImage: image != null
-                        ? Image.file(File(image?.path ?? "")).image
-                        : null,
-                    child: image != null ? null : Icon(Icons.person, size: 40),
-                  ),
-                ),
-                SizedBox(height: 15),
-                Text("Create Your Profile", style: AppTextStyles.titles),
-                SizedBox(height: 10),
-                Text(
-                  "Add your name and profile picture",
-                  style: AppTextStyles.hinttitles,
-                ),
-                SizedBox(height: 20),
+                200.verticalSpace,
+                Text("Login", style: AppTextStyles.titles),
+                50.verticalSpace,
                 CustomTextField(
-                  subtitle: "full Name",
-                  descripe: "enter your name",
-                  controller: namecontrollar,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "name is required";
-                    } else if (value.length < 4) {
-                      return " name must be greater than 4 ";
-                    }
-                  },
+                  subtitle: "Email",
+                  descripe: " please enter your Email",
+                  controller: emailcontrollar,
+                  keyboardtype: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 15),
+                15.verticalSpace,
+                CustomTextField(
+                  subtitle: "Password",
+                  descripe: "Please enter your password",
+                  controller: passwordcontrollar,
+                  keyboardtype: TextInputType.visiblePassword,
+                ),
+                50.verticalSpace,
                 CustomContainer(
-                  title: "Continue",
+                  title: "Login",
                   onTap: () {
-                    if (image == null) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('error'),
-                            content: Text("please inter your photo"),
-                          );
-                        },
+                    if (formkey.currentState!.validate()) {
+                      context.read<LoginCubit>().LoginState(
+                        LoginRequestBody(
+                          email: emailcontrollar.text,
+                          password: passwordcontrollar.text,
+                        ),
                       );
-                      return;
-                    }
-                    if (formkey.currentState?.validate() ?? false) {
-                      Hive.box<UserModel>(AppConstantBox.userbox)
-                          .add(
-                            UserModel(
-                              image: image?.path ?? "",
-                              name: namecontrollar.text,
-                            ),
-                          )
-                          .then((value) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return HomeScreen();
-                                },
-                              ),
-                            );
-                          })
-                          .catchError((error) {
-                            print(error);
-                          });
                     }
                   },
                 ),

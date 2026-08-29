@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String subtitle;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -9,6 +9,8 @@ class CustomTextField extends StatelessWidget {
   final String? descripe;
   final bool? readonly;
   final void Function()? onTap;
+  final TextInputType keyboardtype;
+  final ispassword;
   const CustomTextField({
     super.key,
     required this.subtitle,
@@ -18,26 +20,48 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     this.readonly,
     this.onTap,
+    required this.keyboardtype,
+    this.ispassword = false,
   });
 
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool isobscure = true;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("$subtitle", style: AppTextStyles.fieldsubtitles),
+        Text("${widget.subtitle}", style: AppTextStyles.fieldsubtitles),
         SizedBox(height: 5),
         TextFormField(
-          maxLines: lines,
-          controller: controller,
-          readOnly: readonly ?? false,
-          onTap: onTap,
+          maxLines: widget.lines,
+          controller: widget.controller,
+          readOnly: widget.readonly ?? false,
+          onTap: widget.onTap,
           onTapOutside: (y) {
             FocusScope.of(context).unfocus();
           },
-          validator: validator,
+          validator: widget.validator,
+          keyboardType: widget.keyboardtype,
+          obscureText: widget.ispassword && isobscure,
           decoration: InputDecoration(
-            hintText: descripe,
+            suffixIcon: widget.ispassword
+                ? InkWell(
+                    onTap: () {
+                      setState(() {
+                        isobscure = !isobscure;
+                      });
+                    },
+                    child: Icon(
+                      isobscure ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  )
+                : null,
+            hintText: widget.descripe,
             fillColor: Colors.white,
             filled: true,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
