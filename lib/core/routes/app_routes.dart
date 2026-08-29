@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/routes/routes.dart';
-import 'package:to_do_app/features/add_task.dart/ui/add_task_screen.dart';
-import 'package:to_do_app/features/home_screen/UI/home_screen.dart';
-import 'package:to_do_app/features/login_screen/ui/login_screen.dart';
+import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
+import 'package:to_do_app/features/auth/login_screen/presentation/ui/login_screen.dart';
 import 'package:to_do_app/features/splash/presentation/ui/splash_screen.dart';
 
 class AppRoutes {

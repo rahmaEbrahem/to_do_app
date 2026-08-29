@@ -3,11 +3,11 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/core/utils/app_constant_box.dart';
 import 'package:to_do_app/features/add_task.dart/data/model/task_model.dart';
-import 'package:to_do_app/features/add_task.dart/ui/add_task_screen.dart';
-import 'package:to_do_app/features/home_screen/UI/widgets/home_app_header.dart';
-import 'package:to_do_app/features/home_screen/UI/widgets/home_card.dart';
-import 'package:to_do_app/features/home_screen/UI/widgets/task_item.dart';
-import 'package:to_do_app/features/home_screen/UI/widgets/tasks_list.dart';
+import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_app_header.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_card.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/widgets/task_item.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/widgets/tasks_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

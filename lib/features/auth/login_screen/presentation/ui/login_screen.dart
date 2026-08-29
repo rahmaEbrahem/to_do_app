@@ -7,8 +7,8 @@ import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/core/utils/app_constant_box.dart';
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
-import 'package:to_do_app/features/home_screen/UI/home_screen.dart';
-import 'package:to_do_app/features/login_screen/data/models/user_model.dart';
+import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
+import 'package:to_do_app/features/auth/login_screen/data/models/user_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

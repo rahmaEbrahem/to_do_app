@@ -6,7 +6,7 @@ import 'package:to_do_app/core/utils/app_constant_box.dart';
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
 import 'package:to_do_app/features/add_task.dart/data/model/task_model.dart';
-import 'package:to_do_app/features/add_task.dart/ui/widgets/task_colors_list.dart';
+import 'package:to_do_app/features/add_task.dart/presentation/ui/widgets/task_colors_list.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
