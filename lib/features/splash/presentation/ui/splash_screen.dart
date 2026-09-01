@@ -19,14 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-  // Widget nextRoute() {
-  //   if (Hive.box<UserModel>(AppConstantBox.userbox).isEmpty) {
-  //     return LoginScreen();
-  //   } else {
-  //     return HomeScreen();
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
