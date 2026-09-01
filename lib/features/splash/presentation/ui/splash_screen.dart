@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:to_do_app/core/helper/extentions.dart';
-import 'package:to_do_app/core/routes/app_routes.dart';
 import 'package:to_do_app/core/routes/routes.dart';
-import 'package:to_do_app/core/utils/app_constant_box.dart';
-import 'package:to_do_app/features/auth/regester_screen/presentation/ui/register_screen.dart';
-import 'package:to_do_app/features/home_screen/presentation/UI/home_screen.dart';
-import 'package:to_do_app/features/auth/login_screen/presentation/ui/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

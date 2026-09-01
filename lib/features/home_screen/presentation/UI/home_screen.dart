@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:to_do_app/core/routes/routes.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
+import 'package:to_do_app/features/add_task.dart/presentation/cubit/addtask_cubit.dart';
 import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_app_header.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_card.dart';
@@ -55,10 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddTaskScreen()),
-          );
+          await Navigator.pushNamed(context, Routes.addtaskscreen);
 
           if (context.mounted) {
             context.read<HomeCubit>().getTasks();

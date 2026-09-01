@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/routes/routes.dart';
+import 'package:to_do_app/features/add_task.dart/presentation/cubit/addtask_cubit.dart';
 import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
 import 'package:to_do_app/features/auth/login_screen/data/repo/login_repo.dart';
 import 'package:to_do_app/features/auth/login_screen/presentation/cubit/login_cubit.dart';
@@ -39,7 +40,12 @@ class AppRoutes {
           ),
         );
       case Routes.addtaskscreen:
-        return MaterialPageRoute(builder: (context) => AddTaskScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => AddtaskCubit(),
+            child: AddTaskScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(
