@@ -46,7 +46,12 @@ class TaskItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 10,
                   children: [
-                    Text(task.title ?? "", style: AppTextStyles.titles),
+                    Text(
+                      task.title ?? "",
+                      style: AppTextStyles.titles.copyWith(
+                        color: Colors.blueAccent,
+                      ),
+                    ),
 
                     Text(
                       task.description ?? "",
@@ -55,7 +60,9 @@ class TaskItem extends StatelessWidget {
 
                     Text(
                       task.status ?? "pending",
-                      style: AppTextStyles.fieldsubtitles,
+                      style: AppTextStyles.fieldsubtitles.copyWith(
+                        color: Colors.blueGrey,
+                      ),
                     ),
 
                     Text(

@@ -13,7 +13,7 @@ class AppTextStyles {
   static TextStyle hinttitles = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: Colors.grey.shade400,
+    color: Colors.grey.shade600,
   );
   static TextStyle containtitles = TextStyle(
     fontSize: 16,

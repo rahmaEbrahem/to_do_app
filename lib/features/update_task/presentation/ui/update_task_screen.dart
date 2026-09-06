@@ -1,12 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/core/helper/extentions.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/features/home_screen/data/model/home_model.dart';
-
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
-import 'package:to_do_app/features/home_screen/data/model/home_model.dart';
 import 'package:to_do_app/features/update_task/data/model/update_task_request_body.dart';
 import 'package:to_do_app/features/update_task/presentation/cubit/updatetask_cubit.dart';
 
@@ -59,7 +58,12 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () {
+            context.pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         title: const Text("Edit Task"),
       ),
 

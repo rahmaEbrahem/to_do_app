@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/core/helper/extentions.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
 import 'package:to_do_app/core/widgets/custom_container.dart';
 import 'package:to_do_app/core/widgets/custom_text_field.dart';
@@ -31,7 +32,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_outlined),
+        leading: IconButton(
+          onPressed: () {
+            context.pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         title: Text("Add Task"),
       ),
       body: BlocConsumer<AddtaskCubit, AddtaskState>(

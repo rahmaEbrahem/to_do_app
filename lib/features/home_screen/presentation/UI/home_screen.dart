@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/core/routes/routes.dart';
+import 'package:to_do_app/core/theme/app_colors.dart';
 import 'package:to_do_app/core/theme/app_text_styles.dart';
-import 'package:to_do_app/features/add_task.dart/presentation/cubit/addtask_cubit.dart';
-import 'package:to_do_app/features/add_task.dart/presentation/ui/add_task_screen.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_app_header.dart';
-import 'package:to_do_app/features/home_screen/presentation/UI/widgets/home_card.dart';
 import 'package:to_do_app/features/home_screen/presentation/UI/widgets/tasks_list.dart';
 import 'package:to_do_app/features/home_screen/presentation/cubit/home_cubit.dart';
 
@@ -40,10 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HomeAppHeader(),
-                    10.verticalSpace,
-                    HomeCard(total: total, done: done, pending: pending),
-                    10.verticalSpace,
-                    Text("Today's Tasks", style: AppTextStyles.titles),
+                    30.verticalSpace,
+                    Text(
+                      "Today's Tasks",
+                      style: AppTextStyles.titles.copyWith(
+                        color: AppColors.maincolor,
+                      ),
+                    ),
                     10.verticalSpace,
                     TasksList(alltasks: myTasks),
                   ],
