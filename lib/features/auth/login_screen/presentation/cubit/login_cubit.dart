@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:to_do_app/features/auth/login_screen/data/models/login_request_body.dart';
@@ -15,10 +17,10 @@ class LoginCubit extends Cubit<LoginState> {
       if (result != null) {
         emit(LoginSuccess(token: result.token, name: result.name));
       } else {
-        emit(LoginError());
+        emit(LoginError(message: 'login failed'));
       }
     } catch (e) {
-      emit(LoginError());
+      emit(LoginError(message: e.toString()));
     }
   }
 }

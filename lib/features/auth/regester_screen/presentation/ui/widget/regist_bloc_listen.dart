@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helper/app_dialog.dart';
-import 'package:to_do_app/core/helper/app_preferences.dart';
 import 'package:to_do_app/core/helper/extentions.dart';
 import 'package:to_do_app/core/routes/routes.dart';
 import 'package:to_do_app/features/auth/regester_screen/presentation/cubit/register_cubit.dart';
@@ -17,9 +16,9 @@ class RegistBlocListen extends StatelessWidget {
           AppDialog.loadingdialog(context);
         } else if (state is RegisterSuccess) {
           context.pushNamedAndRemoveUntil(Routes.loginscreen, false);
-        } else {
+        } else if (state is RegisterError) {
           context.pop();
-          AppDialog.error(context);
+          AppDialog.error(context, state.message);
         }
       },
       child: SizedBox.shrink(),

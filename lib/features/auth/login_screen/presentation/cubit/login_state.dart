@@ -13,4 +13,7 @@ final class LoginSuccess extends LoginState {
   LoginSuccess({required this.token, required this.name});
 }
 
-final class LoginError extends LoginState {}
+final class LoginError extends LoginState {
+  final String message;
+  LoginError({required this.message});
+}

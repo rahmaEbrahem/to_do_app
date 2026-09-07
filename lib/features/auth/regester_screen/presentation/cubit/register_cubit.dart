@@ -14,10 +14,10 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (result != null) {
         emit(RegisterSuccess(token: result, name: body.name));
       } else {
-        emit(RegisterError());
+        emit(RegisterError(message: "Register failed"));
       }
     } catch (e) {
-      emit(RegisterError());
+      emit(RegisterError(message: e.toString()));
     }
   }
 }

@@ -13,14 +13,11 @@ class AppDialog {
     );
   }
 
-  static Future<dynamic> error(BuildContext context) {
+  static Future<dynamic> error(BuildContext context, String message) {
     return showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: Text("ERROR"),
-          content: Text("error please try again"),
-        );
+        return AlertDialog(title: Text("ERROR"), content: Text(message));
       },
     );
   }

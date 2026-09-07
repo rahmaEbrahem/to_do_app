@@ -13,4 +13,7 @@ final class RegisterSuccess extends RegisterState {
   RegisterSuccess({required this.token, required this.name});
 }
 
-final class RegisterError extends RegisterState {}
+final class RegisterError extends RegisterState {
+  final String message;
+  RegisterError({required this.message});
+}

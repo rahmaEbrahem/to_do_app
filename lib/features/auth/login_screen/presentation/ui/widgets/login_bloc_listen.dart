@@ -18,9 +18,9 @@ class LoginBlocListen extends StatelessWidget {
         } else if (state is LoginSuccess) {
           await AppPreferences.saveToken(token: state.token);
           context.pushNamedAndRemoveUntil(Routes.homescreen, false);
-        } else {
+        } else if (state is LoginError) {
           context.pop();
-          AppDialog.error(context);
+          AppDialog.error(context, state.message);
         }
       },
       child: SizedBox.shrink(),

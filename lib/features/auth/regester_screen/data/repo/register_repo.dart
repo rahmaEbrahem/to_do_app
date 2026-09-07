@@ -26,11 +26,9 @@ class RegisterRepo {
         statuscode: e.response?.statusCode ?? 0,
         message: e.response?.data?['message'] ?? e.message ?? "unKnown error",
       );
-      print(ErrorHandling.handle(apiexeption));
-      return null;
+      throw Exception(ErrorHandling.handle(apiexeption));
     } catch (e) {
-      print(e);
-      return null;
+      rethrow;
     }
   }
 }
